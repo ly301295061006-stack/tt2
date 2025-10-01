@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Trạm 1 – Khúc mở hội</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f9f9f9; text-align:center; padding:40px; }
+h2 { color:#b03060; margin-bottom:20px; }
+#avatar { width:160px; transition: transform 0.3s ease; margin-top:20px; border-radius:10px; border:2px solid #b03060; }
+.costume-container { margin-top:25px; }
+.costume { width:90px; cursor:pointer; margin:10px; transition: transform 0.2s; position:relative; border:2px solid #ccc; border-radius:10px; }
+.costume:hover { transform: scale(1.2); border-color:#b03060; }
+.tooltip { visibility:hidden; background:#333; color:#fff; padding:5px 10px; border-radius:5px; position:absolute; z-index:10; font-size:14px; white-space: nowrap; top:-30px; left:50%; transform:translateX(-50%);}
+.costume:hover .tooltip { visibility:visible; }
+.quiz-container { margin-top:35px; text-align:left; display:inline-block; background:#fff0f5; padding:20px; border-radius:15px; box-shadow:0 0 10px rgba(0,0,0,0.1); max-width:500px; }
+.quiz-container h3 { margin-top:0; color:#b03060; }
+.quiz-container label { display:block; margin:8px 0; cursor:pointer; }
+button { margin-top:20px; padding:12px 25px; font-size:16px; cursor:pointer; background:#b03060; color:#fff; border:none; border-radius:8px; transition:0.2s; }
+button:hover { background:#8a2450; }
+</style>
+</head>
+<body>
+
+<h2>Trạm 1: Khúc mở hội – Hóa thân thành khách quý</h2>
+
+<p>Chào mừng bạn đến Trạm 1. Hãy chọn một trang phục ảo đặc trưng của Tày – Nùng để hóa thân và chuẩn bị trả lời các câu hỏi về Lễ hội Lồng Tồng.</p>
+
+<img id="avatar" src="https://i.imgur.com/avatar_default.png" alt="Avatar">
+
+<div class="costume-container">
+  <div style="display:inline-block; position:relative;">
+    <img class="costume" src="https://i.imgur.com/1Tay.png">
+    <span class="tooltip">Áo Tày truyền thống – tượng trưng cho mùa xuân ấm no</span>
+  </div>
+  <div style="display:inline-block; position:relative;">
+    <img class="costume" src="https://i.imgur.com/2Nung.png">
+    <span class="tooltip">Áo Nùng rực rỡ – tinh thần đoàn kết bản làng</span>
+  </div>
+  <div style="display:inline-block; position:relative;">
+    <img class="costume" src="https://i.imgur.com/3Lehoi.png">
+    <span class="tooltip">Trang phục lễ hội – dùng trong nghi lễ mở hội</span>
+  </div>
+</div>
+
+<div class="quiz-container">
+  <h3>Mini-quiz: Kiến thức Lễ hội Lồng Tồng</h3>
+
+  <p><strong>Câu 1:</strong> Lễ vật nào thường được dâng lên bàn thờ trong nghi lễ mở hội?</p>
+  <label><input type="radio" name="q1" value="wrong"> Chỉ bánh chưng</label>
+  <label><input type="radio" name="q1" value="wrong"> Hoa quả và kẹo</label>
+  <label><input type="radio" name="q1" value="correct"> Thịt lợn, gà, bánh, rượu, nông sản</label>
+
+  <p><strong>Câu 2:</strong> Mục đích của lễ xin âm dương là gì?</p>
+  <label><input type="radio" name="q2" value="correct"> Thể hiện lòng biết ơn Trời Đất và tổ tiên, cầu mùa bội thu</label>
+  <label><input type="radio" name="q2" value="wrong"> Chỉ để tổ chức trò chơi dân gian</label>
+  <label><input type="radio" name="q2" value="wrong"> Chỉ để trang trí lễ hội</label>
+
+  <p><strong>Câu 3:</strong> Hát then, sli, lượn trong lễ hội thường dùng để?</p>
+  <label><input type="radio" name="q3" value="correct"> Giao duyên, chúc tụng, mừng xuân</label>
+  <label><input type="radio" name="q3" value="wrong"> Chỉ hát giải trí</label>
+  <label><input type="radio" name="q3" value="wrong"> Chỉ để thi tài năng</label>
+
+  <button onclick="checkQuiz()">Nộp bài</button>
+</div>
+
+<button id="nextBtn" onclick="window.location.href='tram2.html'">Đi tiếp →</button>
+
+<script>
+// Avatar chọn trang phục
+const avatar = document.getElementById('avatar');
+const costumes = document.querySelectorAll('.costume');
+
+costumes.forEach(c => {
+  c.addEventListener('click', () => {
+    avatar.style.transform = 'scale(1.2) rotate(10deg)';
+    setTimeout(()=>{ avatar.style.transform='scale(1) rotate(0deg)'; }, 300);
+    avatar.src = c.src;
+  });
+});
+
+// Kiểm tra quiz
+function checkQuiz() {
+  let score = 0;
+  if(document.querySelector('input[name="q1"]:checked')?.value === 'correct') score++;
+  if(document.querySelector('input[name="q2"]:checked')?.value === 'correct') score++;
+  if(document.querySelector('input[name="q3"]:checked')?.value === 'correct') score++;
+  alert('Bạn trả lời đúng ' + score + '/3 câu!');
+}
+</script>
+
+</body>
+</html>
